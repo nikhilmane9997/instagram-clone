@@ -9,6 +9,5 @@ export const fakeSuggestion = [...Array(20)].map((_, i) => ({
   birthdate: faker.date.birthdate(),
   registeredAt: faker.date.past(),
   companyName: faker.company.name(),
-  //   ...faker.helpers.arrayElements(),
   id: i,
 }));

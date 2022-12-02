@@ -14,20 +14,19 @@ const Feeds = () => {
           !session && "!grid-cols-1 !max-w-3xl"
         }`}
       >
-        <section className="col-span-2">
-          {/* Storiex */}
-          <Stories />
-          <Posts />
-        </section>
         {session && (
-          <section className="hidden xl:inline-grid md:col-span-1">
-            <div className="fixed top-20">
-              <MiniProfile />
-              <Suggestions />
-            </div>
-            {/* mini profile  */}
-            {/* suggestions */}
-          </section>
+          <>
+            <section className="col-span-2">
+              <Stories />
+              <Posts />
+            </section>
+            <section className="hidden xl:inline-grid md:col-span-1">
+              <div className="fixed top-20">
+                <MiniProfile />
+                <Suggestions />
+              </div>
+            </section>
+          </>
         )}
       </main>
     </>
