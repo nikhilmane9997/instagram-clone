@@ -49,7 +49,7 @@ const Header = () => {
               <SearchIcon className="h-5 w-5" />
             </div>
             <input
-              className="bg-gray-50 w-full pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black"
+              className="bg-gray-50 md:w-full hidden md:inline pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black"
               type="text"
               placeholder="search"
             />
