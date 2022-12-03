@@ -1,7 +1,7 @@
 import { async } from "@firebase/util";
 import React from "react";
 import { getProviders, signIn as SignInProvider } from "next-auth/react";
-import Header from "../../components/Header";
+import Header from "../../components/Navbar/Header";
 
 const signIn = ({ providers }) => {
   return (

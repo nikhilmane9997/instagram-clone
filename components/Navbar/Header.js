@@ -9,41 +9,41 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/outline";
 import { HomeIcon } from "@heroicons/react/24/solid";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { moduleState } from "../atoms/moduleAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { disclosureState, moduleState } from "../../atoms/moduleAtom";
+import Disclosure from "./disclosure";
+import Model from "../Model";
+
 const Header = () => {
   const { data: session } = useSession();
 
   const router = useRouter();
-  const [open, setOpen] = useRecoilState(moduleState);
+  const setOpen = useSetRecoilState(moduleState);
+  const [openDisclosure, setOpenDisclosure] = useRecoilState(disclosureState);
+
   return (
-    <div className="shadow-sm border-b bg-white sticky top-0 z-50">
+    <div className="shadow-sm border-b bg-white sticky top-0 z-50 w-full">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
         <div
           className="relative w-24 hidden lg:inline-grid cursor-pointer"
           onClick={() => router.push("/")}
         >
-          <Image
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png"
-            layout="fill"
-            objectFit="contain"
-            alt="ista-logo"
+            alt="insta-logo"
           />
         </div>
         <div
           className="relative w-10 lg:hidden flex-shrink-0 cursor-pointer"
           onClick={() => router.push("/")}
         >
-          <Image
+          <img
             src="https://i.pinimg.com/736x/95/73/1a/95731a2d0ab3c1851ed7b5328d068b1f.jpg"
-            layout="fill"
-            objectFit="contain"
-            alt="ista-logo"
+            alt="insta-logo"
           />
         </div>
-        {/* middlesection */}
         <div className="max-w-xs">
           <div className="relative mt-1 p-3 rounded-md">
             <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
@@ -58,7 +58,12 @@ const Header = () => {
         </div>
         <div className="flex space-x-4 justify-end items-center">
           <HomeIcon className="NavBtn" onClick={() => router.push("/")} />
-          <Bars3Icon className="h-6 md:hidden " />
+          <Bars3Icon
+            onClick={() => {
+              setOpenDisclosure(!openDisclosure);
+            }}
+            className="h-6 md:hidden "
+          />
           {session ? (
             <>
               <div className="relative NavBtn">
@@ -74,7 +79,9 @@ const Header = () => {
               <UserGroupIcon className="NavBtn" />
               <HeartIcon className="NavBtn" />
               <img
-                onClick={signOut}
+                onClick={() => {
+                  router.push(`/${session?.user?.username}`);
+                }}
                 className="h-10 w-10 rounded-full cursor-pointer"
                 src={session?.user?.image}
                 alt=""
@@ -85,6 +92,13 @@ const Header = () => {
           )}
         </div>
       </div>
+
+      {openDisclosure && (
+        <div className="block md:hidden w-full">
+          <Disclosure />
+        </div>
+      )}
+      <Model />
     </div>
   );
 };

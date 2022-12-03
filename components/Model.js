@@ -1,7 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { moduleState } from "../atoms/moduleAtom";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import {
   addDoc,
@@ -13,6 +12,7 @@ import {
 import { db, storage } from "../utils/firebase";
 import { useSession } from "next-auth/react";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
+import { moduleState } from "../atoms/moduleAtom";
 const Model = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useRecoilState(moduleState);
@@ -58,10 +58,10 @@ const Model = () => {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-10 inset-0 overflow-y-auto "
         onClose={setOpen}
       >
-        <div className="flex items-end justify-center min-h-[800px] sm:min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-end justify-center min-h-[800px] sm:max-h-12 pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

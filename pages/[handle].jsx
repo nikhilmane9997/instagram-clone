@@ -1,16 +1,16 @@
-import { useRouter } from "next/router";
-import React from "react";
-import Header from "../components/Header";
-import HeaderProfile from "../components/Profile/HeaderProfile";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { addPost } from "../atoms/moduleAtom";
+import Header from "../components/Navbar/Header";
+import Posts from "../components/Profile/Posts";
 
 const Profile = () => {
-  const router = useRouter();
-  const { handle } = router.query;
+  // const [post] = useRecoilValue(globalAddPost);
+
+  // console.log("post", post);
+
   return (
     <div>
       <Header />
-      <HeaderProfile />
-      This is {handle}
     </div>
   );
 };

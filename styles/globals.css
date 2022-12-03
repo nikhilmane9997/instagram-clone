@@ -10,3 +10,7 @@
     @apply h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out;
   }
 }
+
+.button {
+  @apply px-4 py-2 rounded-lg text-gray-800 bg-gray-200 border-[1.5px] border-gray-400 !important;
+}

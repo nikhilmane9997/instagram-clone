@@ -8,7 +8,9 @@ const SignOut = () => {
     <div>
       <button
         onClick={() => {
-          router.push("/");
+          signOut({
+            callbackUrl: "/auth/signin",
+          });
         }}
         className="text-white bg-red-500 px-4 py-2 rounded-lg"
       >

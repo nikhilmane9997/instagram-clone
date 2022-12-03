@@ -1,9 +1,11 @@
-import React from 'react'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { globalAddPost, postState } from "../../atoms/moduleAtom";
+import Model from "../Model";
 
 const Posts = () => {
-  return (
-    <div>Posts</div>
-  )
-}
+  const [globalPost] = useRecoilState(postState);
+  console.log("globalPost", globalPost);
+  return <>{globalPost && <Model />}</>;
+};
 
-export default Posts
+export default Posts;
