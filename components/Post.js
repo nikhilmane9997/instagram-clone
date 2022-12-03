@@ -106,13 +106,18 @@ const Post = (props) => {
           <BookmarkIcon className="btn" />
         </div>
       )}
-      <p className="p-5 truncate">
-        {likes.length > 0 && (
-          <p className="font-bold mb-1">{likes.length}likes</p>
-        )}
-        <span className="font-bold ml-1">{username}</span>
-        {caption}
-      </p>
+      <div className="flex flex-col p-5">
+        <p className=" truncate">
+          {likes.length > 0 && (
+            <p className="font-bold mb-1">{likes.length}likes</p>
+          )}
+        </p>
+        <div className="space-x-2">
+          <span className="font-bold ml-1">{username}</span>
+          <span className="">{caption}</span>
+        </div>
+      </div>
+
       {comments.length > 0 && (
         <div className="ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
           {comments.map((comment, id) => {
