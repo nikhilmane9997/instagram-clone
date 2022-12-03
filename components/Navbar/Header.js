@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50 w-full">
-      <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
+      <div className="flex justify-between items-center max-w-6xl mx-5 lg:mx-auto">
         <div
           className="relative w-24 hidden lg:inline-grid cursor-pointer"
           onClick={() => router.push("/")}
