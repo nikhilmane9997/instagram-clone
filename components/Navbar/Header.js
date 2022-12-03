@@ -19,7 +19,7 @@ const Header = () => {
   const { data: session } = useSession();
 
   const router = useRouter();
-  const setOpen = useSetRecoilState(moduleState);
+  const [open, setOpen] = useRecoilState(moduleState);
   const [openDisclosure, setOpenDisclosure] = useRecoilState(disclosureState);
 
   return (
@@ -73,7 +73,9 @@ const Header = () => {
               </div>
               <PlusCircleIcon
                 className="NavBtn"
-                onClick={() => setOpen(true)}
+                onClick={() => {
+                  !open ? setOpen(true) : setOpen(false);
+                }}
               />
               <UserGroupIcon className="NavBtn" />
               <HeartIcon className="NavBtn" />

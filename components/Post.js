@@ -87,7 +87,7 @@ const Post = (props) => {
         <p className="flex-1 font-bold capitalize">{username}</p>
         <EllipsisHorizontalIcon className="h-5" />
       </div>
-      <img src={postImg} alt="post imgage" className="w-full object-fill" />
+      <img src={postImg} alt="post imgage" className="w-full  object-fill" />
       {session && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
