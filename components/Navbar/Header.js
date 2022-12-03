@@ -12,7 +12,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { disclosureState, moduleState } from "../../atoms/moduleAtom";
-import Disclosure from "./disclosure";
+import Disclosure from "./Disclosure";
 import Model from "../Model";
 
 const Header = () => {
