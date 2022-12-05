@@ -23,12 +23,6 @@ const MiniProfile = () => {
           <h2 className="text-sm">{session?.user?.email}</h2>
         </div>
       </span>
-      <button
-        onClick={signOut}
-        className="text-blue-500 font-semibold cursor-pointer"
-      >
-        Sign Out
-      </button>
     </div>
   );
 };

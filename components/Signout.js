@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 const SignOut = () => {
   const router = useRouter();
   return (
-    <div>
+    <div className="flex justify-center md:justify-end p-4">
       <button
         onClick={() => {
           signOut({

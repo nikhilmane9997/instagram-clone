@@ -13,6 +13,7 @@ import { db, storage } from "../utils/firebase";
 import { useSession } from "next-auth/react";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { moduleState } from "../atoms/moduleAtom";
+import { ToastContainer, toast } from "react-toastify";
 const Model = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useRecoilState(moduleState);
@@ -32,6 +33,10 @@ const Model = () => {
     });
     console.log(docRef.id);
 
+    const tostNotify = () => {
+      toast.success("Post Uploaded");
+    };
+
     const imageRef = ref(storage, `posts/${docRef.id}/images`);
     await uploadString(imageRef, selectedFile, "data_url").then(
       async (snapshot) => {
@@ -44,6 +49,7 @@ const Model = () => {
     setOpen(false);
     setLoading(false);
     setSelectedFile(null);
+    tostNotify();
   };
   const addImageToPost = (e) => {
     const reader = new FileReader();
@@ -56,6 +62,7 @@ const Model = () => {
   };
   return (
     <div className="flex white items-center justify-center ">
+      <ToastContainer />
       {open && (
         <div
           className="rounded-lg px-4 pt-5 pb-4 text-left
