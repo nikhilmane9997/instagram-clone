@@ -61,7 +61,7 @@ const Header = () => {
             onClick={() => {
               setOpenDisclosure(!openDisclosure);
             }}
-            className="h-6 md:hidden "
+            className="h-6 md:hidden cursor-pointer"
           />
           {session ? (
             <>

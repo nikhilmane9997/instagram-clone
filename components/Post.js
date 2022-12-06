@@ -25,6 +25,7 @@ import { db } from "../utils/firebase";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { moduleComment } from "../atoms/moduleAtom";
 import Moment from "react-moment";
+import { async } from "@firebase/util";
 const Post = (props) => {
   const { id, username, imgs, caption, postImg } = props;
   const { data: session } = useSession();
@@ -32,6 +33,7 @@ const Post = (props) => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [isliked, setIsliked] = useState(false);
+  const [deleteMenu, setDeleteMenu] = useState(false);
   const sendComment = async (e) => {
     e.preventDefault();
     const sentComment = comment;
@@ -65,6 +67,10 @@ const Post = (props) => {
       });
     }
   };
+
+  const deletePost = async () => {
+    await deleteDoc(doc(db, "posts", id));
+  };
   useEffect(
     () =>
       onSnapshot(
@@ -85,7 +91,21 @@ const Post = (props) => {
           alt=""
         />
         <p className="flex-1 font-bold capitalize">{username}</p>
-        <EllipsisHorizontalIcon className="h-5" />
+        <div>
+          {!deleteMenu ? (
+            <EllipsisHorizontalIcon
+              className="h-5 relative cursor-pointer"
+              onClick={() => setDeleteMenu(true)}
+            />
+          ) : (
+            <button
+              className=" relative text-white boder-[1.5px] border-gray-300 h-10 w-28 rounded-xl cursor-pointer bg-red-500 text-xl"
+              onClick={deletePost}
+            >
+              Delete
+            </button>
+          )}
+        </div>
       </div>
       <img src={postImg} alt="post imgage" className="w-full  object-fill" />
       {session && (
